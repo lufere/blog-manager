@@ -5,18 +5,25 @@ import './App.css';
 import jwt from 'jsonwebtoken';
 
 import Login from './Login';
-import Homepage from './Homepage'
+import Homepage from './Homepage';
+import BlogCreate from './BlogCreate';
 
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [currentUser, setCurrentUser] = useState();
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [published, setPublished] = useState(false);
 
   function onChange(e){
     let name = e.target.name;
     let value = e.target.value;
     if(name==='username') setUsername(value);
     if(name==='password') setPassword(value);
+    if(name==='title') setTitle(value);
+    if(name==='content') setContent(value);
+    if(name==='published') setPublished(!published);
   }
 
   function checkExpiration(){
@@ -44,15 +51,12 @@ function App() {
     // console.log('username:', currentUser);
   },[])
 
-  useEffect(()=>console.log('set', currentUser),[currentUser])
+  // useEffect(()=>console.log('set', currentUser),[currentUser])
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
-          {/* <p>Welcome {currentUser}</p> 
-          <p>Welcome {currentUser?currentUser:'Guest'}</p> 
-          {!currentUser?<Link to='/login'>Login</Link>:null} */}
           <Homepage
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
@@ -67,11 +71,18 @@ function App() {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
           />
-          {/* <div className="App">
-            <p>
-              Initial commit
-            </p>
-          </div> */}
+        </Route>
+        <Route to='/posts/'>
+          <BlogCreate
+            title={title}
+            setTitle={setTitle}
+            content={content}
+            setContent={setContent}
+            published={published}
+            setPublished={setPublished}
+            onChange={onChange}
+            checkExpiration={checkExpiration}
+          />
         </Route>
       </Switch>
     </BrowserRouter>

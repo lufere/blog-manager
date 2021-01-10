@@ -7,6 +7,7 @@ const Homepage = props => {
             <div>
                 {/* <Link to='/login'>Login</Link> */}
                 Welcome {localStorage.getItem('currentUser')}
+                <Link to='/posts'>Create a Post</Link>
             </div>
         );
     }else{
