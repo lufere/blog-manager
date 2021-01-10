@@ -1,5 +1,7 @@
+import { useHistory } from "react-router-dom";
 
 const Login = props => {
+    const history = useHistory();
 
     function onSubmit(e){
         e.preventDefault();
@@ -16,7 +18,9 @@ const Login = props => {
             console.log(data);
             if(data.status===200){
                 localStorage.setItem('authToken', data.token);
-                props.setCurrentUser(data.user.username);
+                localStorage.setItem('currentUser', data.user.username);
+                // props.setCurrentUser(data.user.username);
+                history.push('/');
             }
         })
     }
