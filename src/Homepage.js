@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { decode } from 'jsonwebtoken';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -22,14 +23,16 @@ const Homepage = props => {
             className='preview'
             key={post._id}
             data-post={JSON.stringify(post)}
+            data-id={post._id}
         >
             <h2 className='postTitle'>{post.title}</h2>
             <p className='postContent'>{post.content}</p>
-            <button onClick={publish}>{post.published?'Unpublish':'Publish'}</button>
+            <button onClick={publishPost}>{post.published?'Unpublish':'Publish'}</button>
+            <button onClick={deletePost}>Delete Post</button>
         </div>)
     }
 
-    function publish(e){
+    function publishPost(e){
         let parent = e.target.parentElement;
         let post = JSON.parse(parent.getAttribute('data-post'));
         // let title = parent.querySelector('.postTitle').innerHTML;
@@ -48,18 +51,27 @@ const Homepage = props => {
                 author: post.author._id
             })
         })
-        .then(response=>response.json())
-        .then(data=>{
-            console.log(data);
-            window.location.reload();
-        })
-        .catch(err=>console.error(err));
+            .then(response=>response.json())
+            .then(data=>{
+                console.log(data);
+                window.location.reload();
+            })
+            .catch(err=>console.error(err));
+    }
 
-        // console.log('/posts/'+post.id)
-        // console.log(post.title);
-        // console.log(post.content);
-        // console.log(post.published);
-        // console.log(post.author);
+    function deletePost(e){
+        let parent = e.target.parentElement;
+        let id = parent.getAttribute('data-id');
+        fetch('/posts/'+ id, {
+            method:'DELETE',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('authToken')
+            }
+        })
+            .then(response=>response.json())
+            .then(data=>console.log(data))
+            .catch(err=>console.error(err));
     }
 
     props.checkExpiration();
