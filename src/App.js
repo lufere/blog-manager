@@ -15,6 +15,7 @@ function App() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [published, setPublished] = useState(false);
+  const [userPosts, setUserPosts] = useState();
 
   function onChange(e){
     let name = e.target.name;
@@ -38,7 +39,7 @@ function App() {
         // setCurrentUser();
         localStorage.clear();
       }
-      console.log(decodedToken.payload.username);
+      // console.log(decodedToken.payload.username);
       // localStorage.setItem('currentUser', decodedToken.payload.username)
       // console.log(dateNow.getTime()/1000);
       console.log('EXPIRED ',isExpired);
@@ -48,9 +49,10 @@ function App() {
   useEffect(()=>{
     // console.log('tokenLS', localStorage.getItem('authToken'));
     checkExpiration();
-    // console.log('username:', currentUser);
+    // localStorage.clear()
   },[])
 
+  useEffect(()=>console.log('USER POSTS', userPosts),[userPosts])
   // useEffect(()=>console.log('set', currentUser),[currentUser])
 
   return (
@@ -61,6 +63,8 @@ function App() {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             checkExpiration={checkExpiration}
+            userPosts={userPosts}
+            setUserPosts={setUserPosts}
           />
         </Route>
         <Route path='/login'>
