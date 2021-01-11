@@ -17,12 +17,50 @@ const Homepage = props => {
     },[])
 
     if(props.userPosts){
-        var postList = props.userPosts.map(post=><div key={post._id}>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
+        var postList = props.userPosts.map(post=>
+        <div
+            className='preview'
+            key={post._id}
+            data-post={JSON.stringify(post)}
+        >
+            <h2 className='postTitle'>{post.title}</h2>
+            <p className='postContent'>{post.content}</p>
+            <button onClick={publish}>{post.published?'Unpublish':'Publish'}</button>
         </div>)
     }
 
+    function publish(e){
+        let parent = e.target.parentElement;
+        let post = JSON.parse(parent.getAttribute('data-post'));
+        // let title = parent.querySelector('.postTitle').innerHTML;
+        // let content = parent.querySelector('.postContent').innerHTML;
+        
+        fetch('/posts/'+post.id, {
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('authToken')
+            },
+            body:JSON.stringify({
+                title: post.title,
+                content: post.content,
+                published: !post.published,
+                author: post.author._id
+            })
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+            window.location.reload();
+        })
+        .catch(err=>console.error(err));
+
+        // console.log('/posts/'+post.id)
+        // console.log(post.title);
+        // console.log(post.content);
+        // console.log(post.published);
+        // console.log(post.author);
+    }
 
     props.checkExpiration();
     if(localStorage.getItem('currentUser')){
