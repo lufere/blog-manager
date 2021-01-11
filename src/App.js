@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import Login from './Login';
 import Homepage from './Homepage';
 import BlogCreate from './BlogCreate';
+import BlogEdit from './BlogEdit';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -16,6 +17,7 @@ function App() {
   const [content, setContent] = useState('');
   const [published, setPublished] = useState(false);
   const [userPosts, setUserPosts] = useState();
+  const [editAuthor, setEditAuthor] = useState();
 
   function onChange(e){
     let name = e.target.name;
@@ -48,6 +50,7 @@ function App() {
 
   useEffect(()=>{
     // console.log('tokenLS', localStorage.getItem('authToken'));
+    console.log('hi')
     checkExpiration();
     // localStorage.clear()
   },[])
@@ -65,6 +68,13 @@ function App() {
             checkExpiration={checkExpiration}
             userPosts={userPosts}
             setUserPosts={setUserPosts}
+            title={title}
+            setTitle={setTitle}
+            content={content}
+            setContent={setContent}
+            published={published}
+            setPublished={setPublished}
+            setEditAuthor={setEditAuthor}
           />
         </Route>
         <Route path='/login'>
@@ -76,7 +86,7 @@ function App() {
             setCurrentUser={setCurrentUser}
           />
         </Route>
-        <Route to='/posts/'>
+        <Route exact path='/posts/'>
           <BlogCreate
             title={title}
             setTitle={setTitle}
@@ -86,6 +96,20 @@ function App() {
             setPublished={setPublished}
             onChange={onChange}
             checkExpiration={checkExpiration}
+          />
+        </Route>
+        <Route path='/posts/:id'>
+          <BlogEdit
+            title={title}
+            setTitle={setTitle}
+            content={content}
+            setContent={setContent}
+            published={published}
+            setPublished={setPublished}
+            onChange={onChange}
+            checkExpiration={checkExpiration}
+            editAuthor={editAuthor}
+            setEditAuthor={setEditAuthor}
           />
         </Route>
       </Switch>

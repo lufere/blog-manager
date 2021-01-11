@@ -1,11 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { decode } from 'jsonwebtoken';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Homepage = props => {
+    const history = useHistory();
 
     useEffect(()=>{
+        props.setTitle('');
+        props.setContent('');
+        props.setPublished(false);
+        props.setEditAuthor('');
         fetch('/posts')
         .then(response=>response.json())
         .then(data=>{
@@ -29,6 +33,7 @@ const Homepage = props => {
             <p className='postContent'>{post.content}</p>
             <button onClick={publishPost}>{post.published?'Unpublish':'Publish'}</button>
             <button onClick={deletePost}>Delete Post</button>
+            <button onClick={editPost}>Edit Post</button>
         </div>)
     }
 
@@ -70,8 +75,21 @@ const Homepage = props => {
             }
         })
             .then(response=>response.json())
-            .then(data=>console.log(data))
+            .then(data=>{
+                console.log(data)
+                window.location.reload();
+            })
             .catch(err=>console.error(err));
+    }
+
+    function editPost(e){
+        let parent = e.target.parentElement;
+        let post = JSON.parse(parent.getAttribute('data-post'));
+        props.setTitle(post.title);
+        props.setContent(post.content);
+        props.setPublished(post.published);
+        props.setEditAuthor(post.author._id);
+        history.push('/posts/' + post.id);
     }
 
     props.checkExpiration();
