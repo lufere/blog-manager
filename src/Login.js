@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Login = props => {
     const history = useHistory();
@@ -24,38 +24,35 @@ const Login = props => {
             }
         })
     }
-    
-    function test(e){
-        e.preventDefault();
-        console.log(props.currentUser);
-    }
 
     return(
-        <div>
-            <h3>Log in</h3>
-            <form>
-                <label> Username:
-                    <input
-                        type='text'
-                        name='username'
-                        value={props.username}
-                        onChange={props.onChange}
-                    />
-                </label>
-                <label> Password:
-                    <input
-                        type='password'
-                        name='password'
-                        value={props.password}
-                        onChange={props.onChange}
-                    />
-                </label>
-                <button
-                    type='submit'
-                    onClick={onSubmit}
-                >Log In</button>
-                <button onClick={test}>TEST</button>
-            </form>
+        <div className='userFormContainer'>
+            <div className='userForm'>
+                <h3>Log in</h3>
+                <form>
+                    <label> Username:
+                        <input
+                            type='text'
+                            name='username'
+                            value={props.username}
+                            onChange={props.onChange}
+                        />
+                    </label>
+                    <label> Password:
+                        <input
+                            type='password'
+                            name='password'
+                            value={props.password}
+                            onChange={props.onChange}
+                        />
+                    </label>
+                        <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
+                    <button
+                        type='submit'
+                        onClick={onSubmit}
+                    >Log In</button>
+                </form>
+            </div>
         </div>
     );
 }
