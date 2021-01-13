@@ -1,8 +1,119 @@
-.preview{
-  border: solid;
-  margin-bottom: 20px;
-  
+$background: rgb(250, 248, 218);
+$secondary:rgb(131, 159, 236);
+
+html, body{
+  background-color: rgb(197, 197, 197);
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #C5c5c5;
+  opacity: 1;
+  background-size: 36px 63px;
+  background-position: 0 0, 0 0, 18px 32px, 18px 32px, 0 0, 18px 32px;
+  background-image:  linear-gradient(30deg, #b4b4b4 12%, transparent 12.5%, transparent 87%, #b4b4b4 87.5%, #b4b4b4), linear-gradient(150deg, #b4b4b4 12%, transparent 12.5%, transparent 87%, #b4b4b4 87.5%, #b4b4b4), linear-gradient(30deg, #b4b4b4 12%, transparent 12.5%, transparent 87%, #b4b4b4 87.5%, #b4b4b4), linear-gradient(150deg, #b4b4b4 12%, transparent 12.5%, transparent 87%, #b4b4b4 87.5%, #b4b4b4), linear-gradient(60deg, #b4b4b477 25%, transparent 25.5%, transparent 75%, #b4b4b477 75%, #b4b4b477), linear-gradient(60deg, #b4b4b477 25%, transparent 25.5%, transparent 75%, #b4b4b477 75%, #b4b4b477);
 }
+
+.homepage{
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  h1{
+    color: rgb(58, 58, 58);
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px $secondary;
+    font-size: 50px;
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
+a, a:visited{
+  text-decoration: none;
+}
+
+.preview, .createPost{
+  border: solid;
+  background-color: rgb(250, 248, 218);
+  border-radius: 8px;
+  color: rgb(95, 95, 95);
+  // border: 2px solid black;
+  padding: 10px 30px 20px 30px;
+  margin: 20px 20px;
+  // min-width: 230px;
+  width: 90vw;
+  max-width: 1300px;
+  box-shadow: 3px 4px rgb(109, 109, 109);
+  text-align: center;
+  max-height: 400px;
+
+  h2>span{
+    color:rgb(0, 0, 0);
+    // text-shadow: 2px 2px rgb(255, 207, 151);
+    // font-weight: bold;
+  }
+
+  .content{
+    overflow: hidden;
+    // border: solid red;
+    max-height: 200px;
+  }
+
+}
+
+.unpublishedPost{background-color: rgb(245, 193, 184);}
+
+.createPost{
+  background-color: rgb(233, 229, 177);
+  cursor: pointer;
+  transition: transform 0.4s;
+  width: 30vw;
+
+  @media only screen and (max-width:480px) {
+    width: 90vw;
+  }
+
+  @media only screen and (max-width:900px) {
+    width: 70vw;
+  }
+
+  .createBtn{
+    border: none;
+    cursor: pointer;
+    // padding: 10px 30px;
+    // border-radius: 15px;
+    background-color: transparent;
+    color: $secondary;
+    font-size: 45px;
+    font-weight: bold;
+  }
+}
+
+.createPost:hover{
+  transform: scale(1.02);
+}
+
+.actions{
+
+  button{
+    cursor: pointer;
+    border: none;
+    border: 2px solid rgb(80, 79, 79);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 100px;
+  }
+
+  .unpublish{background-color: rgb(247, 187, 76);}
+  .publish{background-color: $secondary;}
+  .delete{background-color: rgb(206, 103, 103);}
+  .edit{background-color: rgb(112, 182, 112);}
+}
+
 
 header{
   background-color: rgb(131, 159, 236);
@@ -15,13 +126,16 @@ header{
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  
+  @media only screen and (max-width: 481px) {
+    padding: 0 0px 0 10px;
+  }
   .logo{
     font-size: 24px;
   }
 
   >a{
     font-size: 24px;
+    text-align: center;
   }
   
   a:visited, a{
@@ -33,16 +147,34 @@ header{
   nav{
     display: flex;
     align-items: center;
+    padding-left: 10px;
 
-    a{
-      margin-right: 10px;
+    a, p{
+      text-align: center;
+      margin-right: 15px;
       font-size: 18px;
       color: white;
       @media only screen and (max-width: 481px) {
         font-size: 12px;
       }
+      span{
+        font-weight: bold;
+      }
+    }
 
-      // font-weight: bold;
+    button{
+      cursor: pointer;
+      font-size: 18px;
+      background-color: rgb(113, 145, 233);
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 15px;
+      border: 2px solid rgb(190, 190, 190);
+      margin-right: 5px;
+      @media only screen and (max-width: 481px) {
+        font-size: 12px;
+      }
     }
 
   }

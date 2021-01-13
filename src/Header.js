@@ -7,7 +7,15 @@ const Header = props => {
                 <Link to='/'>Blog Manager</Link>
                 <nav>
                     <a href='https://lufere.dev/blog-API'>Blog Viewer</a>
-                    <p>Welcome {JSON.parse(localStorage.getItem('currentUser')).username}</p>
+                    <p>Welcome <span>{JSON.parse(localStorage.getItem('currentUser')).username}</span></p>
+                    <button
+                        onClick={()=>{
+                            localStorage.clear();
+                            window.location.reload();
+                        }}
+                    >
+                        Logout
+                    </button>
                     {/* <Link to='/signup'>Sign up</Link> */}
                 </nav>
             </header>
