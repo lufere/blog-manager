@@ -6,6 +6,7 @@ const Homepage = props => {
     const history = useHistory();
 
     useEffect(()=>{
+        // localStorage.clear()
         props.setTitle('');
         props.setContent('');
         props.setPublished(false);
@@ -97,7 +98,7 @@ const Homepage = props => {
         return(
             <div>
                 {/* <Link to='/login'>Login</Link> */}
-                Welcome {localStorage.getItem('currentUser')}
+                Welcome {JSON.parse(localStorage.getItem('currentUser')).username}
                 <Link to='/posts'> Create a Post</Link>
                 <h1>USER POSTS</h1>
                 {postList}

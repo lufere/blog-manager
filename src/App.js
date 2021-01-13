@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import jwt from 'jsonwebtoken';
 
 import Login from './Login';
 import Homepage from './Homepage';
 import BlogCreate from './BlogCreate';
 import BlogEdit from './BlogEdit';
+import Header from './Header';
+import Signup from './Signup';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -60,6 +62,9 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Header
+        checkExpiration={checkExpiration}
+      />
       <Switch>
         <Route exact path='/'>
           <Homepage
@@ -77,13 +82,22 @@ function App() {
             setEditAuthor={setEditAuthor}
           />
         </Route>
-        <Route path='/login'>
+        <Route exact path='/login'>
           <Login
             username={username}
             password={password}
             onChange={onChange}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+          />
+        </Route>
+        <Route exact path='/signup'>
+          <Signup
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            onChange={onChange}
           />
         </Route>
         <Route exact path='/posts/'>
@@ -98,7 +112,7 @@ function App() {
             checkExpiration={checkExpiration}
           />
         </Route>
-        <Route path='/posts/:id'>
+        <Route exact path='/posts/:id'>
           <BlogEdit
             title={title}
             setTitle={setTitle}

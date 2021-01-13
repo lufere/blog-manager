@@ -18,7 +18,7 @@ const Login = props => {
             console.log(data);
             if(data.status===200){
                 localStorage.setItem('authToken', data.token);
-                localStorage.setItem('currentUser', data.user.username);
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
                 // props.setCurrentUser(data.user.username);
                 history.push('/');
             }
@@ -32,7 +32,7 @@ const Login = props => {
 
     return(
         <div>
-            <h2>Sign in</h2>
+            <h3>Log in</h3>
             <form>
                 <label> Username:
                     <input
