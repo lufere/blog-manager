@@ -236,3 +236,73 @@ header{
 
   }
 }
+
+.postForm{
+  // border: solid;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+  form{
+    background-color: $background;
+    width: 90vw;
+    padding: 20px;
+    border: solid rgb(116, 116, 116);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 3px 4px rgb(109, 109, 109);
+    color: rgb(95, 95, 95);
+    font-weight: bold;
+
+    textarea{
+      margin-top: 20px;
+      width: 80vw;
+      height: 25vh;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .formTitle{
+      margin-top: 10px;
+      // height: 50px;
+      width: 40vw;
+      font-size: 30px;
+      text-align: center;
+      @media only screen and (max-width:480px) {font-size: 20px;}
+    }
+    label{
+      font-size: 24px;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      margin-bottom: 20px;
+      @media only screen and (max-width:480px) {font-size: 18px;}
+    }
+
+    button{
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      background-color: $secondary;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 20px;
+      border: none;
+      @media only screen and (max-width:480px) {font-size: 14px;}
+    }
+
+  }
+  h2{
+    color: rgb(58, 58, 58);
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px $secondary;
+    font-size: 50px;
+    // margin-top: 50px;
+    text-align: center;
+    @media only screen and (max-width:480px) {font-size: 30px;}
+    
+  }
+}

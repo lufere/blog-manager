@@ -119,7 +119,7 @@ const Homepage = props => {
             </div>
         );
     }else{
-        history.push('/login')
+        history.push('/login');
         return(
             <div>
                 <Link to='/login'>Login</Link>

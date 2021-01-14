@@ -32,24 +32,26 @@ const BlogCreate = props => {
     }
 
     return(
-        <div>
+        <div className='postForm'>
+            <h2>Creating New Post</h2>
             <form>
-                <label>Title: 
+                <label>Title 
                     <input
                         type = 'text'
                         name = 'title'
+                        className = 'formTitle'
                         value = {props.title}
                         onChange = {props.onChange}
                     />
                 </label>
-                <label> Post Content: 
+                <label> Post Content
                     <textarea
                         name = 'content'
                         value = {props.content}
                         onChange = {props.onChange}
                     />
                 </label>
-                <label>Publish?
+                <label>Publish
                     <input
                         type = 'checkbox'
                         name = 'published'

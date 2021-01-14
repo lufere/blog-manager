@@ -33,8 +33,8 @@ const BlogEdit = props => {
     }
 
     return(
-        <div>
-            <h2>EDIT</h2>
+        <div className='postForm'>
+            <h2>Editing {props.title}</h2>
             <form>
                 <label>Title: 
                     <input
