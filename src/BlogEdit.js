@@ -10,7 +10,7 @@ const BlogEdit = props => {
         if(!localStorage.getItem('authToken')) {
             history.push('./login')
         }else{
-            fetch('/posts/'+id,{
+            fetch(`${process.env.REACT_APP_API}/posts/${id}`,{
                 method:'PUT',
                 headers:{
                     'Content-Type':'application/json',

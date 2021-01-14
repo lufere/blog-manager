@@ -11,7 +11,7 @@ const Homepage = props => {
         props.setContent('');
         props.setPublished(false);
         props.setEditAuthor('');
-        fetch('/posts')
+        fetch(`${process.env.REACT_APP_API}/posts`)
         .then(response=>response.json())
         .then(data=>{
           console.log(data);
@@ -51,7 +51,7 @@ const Homepage = props => {
         // let title = parent.querySelector('.postTitle').innerHTML;
         // let content = parent.querySelector('.postContent').innerHTML;
         
-        fetch('/posts/'+post.id, {
+        fetch(`${process.env.REACT_APP_API}/posts/${post.id}`, {
             method:'PUT',
             headers:{
                 'Content-Type':'application/json',
@@ -75,7 +75,7 @@ const Homepage = props => {
     function deletePost(e){
         let parent = e.target.parentElement.parentElement;
         let id = parent.getAttribute('data-id');
-        fetch('/posts/'+ id, {
+        fetch(`${process.env.REACT_APP_API}/posts/${id}`, {
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json',

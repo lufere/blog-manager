@@ -5,7 +5,7 @@ const Signup = props => {
     
     function onSubmit(e){
         e.preventDefault();
-        fetch('/sign-up',{
+        fetch(`${process.env.REACT_APP_API}/sign-up`,{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({

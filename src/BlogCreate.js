@@ -10,7 +10,7 @@ const BlogCreate = props => {
         if(!localStorage.getItem('authToken')) {
             history.push('./login')
         }else{
-            fetch('/posts',{
+            fetch(`${process.env.REACT_APP_API}/posts`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 import './App.scss';
 import jwt from 'jsonwebtoken';
 
@@ -61,7 +61,7 @@ function App() {
   // useEffect(()=>console.log('set', currentUser),[currentUser])
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header
         checkExpiration={checkExpiration}
       />
@@ -127,7 +127,7 @@ function App() {
           />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
 
   );
 }
