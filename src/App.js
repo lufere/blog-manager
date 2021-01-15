@@ -29,14 +29,21 @@ function App() {
     }else{
       name = 'content';
       value = e;
+      // value = htmlDecode(e);
     }
-    // console.log(name);
+    // console.log(name, value);
     if(name==='username') setUsername(value);
     if(name==='password') setPassword(value);
     if(name==='title') setTitle(value);
     if(name==='content') setContent(value);
     if(name==='published') setPublished(!published);
   }
+
+  function htmlDecode(input){
+    var doc = new DOMParser().parseFromString(input, "text/html");
+    // console.log('doc', doc.documentElement.textContent);
+    return doc.documentElement.textContent;
+}
 
   function checkExpiration(){
     if(localStorage.getItem('authToken')){

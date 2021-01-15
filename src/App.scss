@@ -253,6 +253,7 @@ header{
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  // position: relative;
 
   form{
     background-color: $background;
@@ -266,6 +267,7 @@ header{
     box-shadow: 3px 4px rgb(109, 109, 109);
     color: rgb(95, 95, 95);
     font-weight: bold;
+    position: relative;
 
     textarea, .editor, .tox-tinymce{
       // border: solid red;
@@ -304,7 +306,22 @@ header{
       @media only screen and (max-width:480px) {font-size: 14px;}
     }
 
+    .return{
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      border: none;
+      height: 25px;
+      width: 25px;
+      cursor: pointer;
+      // background-color: transparent;
+      background: url('https://image.flaticon.com/icons/png/512/271/271218.png') no-repeat;
+      background-size: cover;
+      // border: solid red;
+    }
+
   }
+
   h2{
     color: rgb(58, 58, 58);
     color: rgb(255, 255, 255);
@@ -312,7 +329,8 @@ header{
     font-size: 50px;
     // margin-top: 50px;
     text-align: center;
-    @media only screen and (max-width:480px) {font-size: 30px;}
-    
+    @media only screen and (max-width:480px) {font-size: 30px;}  
   }
+
+
 }

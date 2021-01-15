@@ -19,7 +19,7 @@ const BlogEdit = props => {
                 },
                 body:JSON.stringify({
                     title: props.title,
-                    content: htmlDecode(props.content),
+                    content: props.content,
                     // content: props.content,
                     published: props.published,
                     author: props.editAuthor
@@ -44,6 +44,10 @@ const BlogEdit = props => {
         <div className='postForm'>
             <h2>Editing {props.title}</h2>
             <form>
+            <div
+                className='return'
+                onClick={()=>history.push('/')}
+            />
                 <label>Title
                     <input
                         type = 'text'
@@ -57,7 +61,8 @@ const BlogEdit = props => {
                     <Editor
                         textareaName='myTextArea'
                         apiKey="iou7093g4pl6zn5mrc6fxwye33asheqmzogqvbiyn985qfef"
-                        value={htmlDecode(props.content)}
+                        // value={props.content}
+                        // value={props.content}
                         initialValue={htmlDecode(props.content)}
                         onEditorChange={props.onChange}
                         init={{
@@ -82,6 +87,12 @@ const BlogEdit = props => {
                         onChange = {props.onChange}
                     />
                 </label> */}
+                {/* <button onClick={(e)=>{
+                    e.preventDefault();
+                    console.log(htmlDecode(props.content));
+                    }}>
+                    TEST
+                </button> */}
                 <label>Publish?
                     <input
                         type = 'checkbox'

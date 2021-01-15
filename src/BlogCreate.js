@@ -57,7 +57,6 @@ const BlogCreate = props => {
                         className='editor'
                         textareaName='myTextArea'
                         apiKey="iou7093g4pl6zn5mrc6fxwye33asheqmzogqvbiyn985qfef"
-                        initialValue="<p>Initial content</p>"
                         value={props.content}
                         onEditorChange={props.onChange}
                         tagName='textarea'
