@@ -25,6 +25,17 @@ const Homepage = props => {
         .catch(err=>console.error(err));
     },[])
 
+    function htmlDecode(input){
+        // var e = document.createElement('textarea');
+        // e.innerHTML = input;
+        // // handle case of empty input
+        // return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+
+        var doc = new DOMParser().parseFromString(input, "text/html");
+        // console.log('doc', doc.documentElement.textContent);
+        return doc.documentElement.textContent;
+    }
+
     if(props.userPosts){
         var postList = props.userPosts.map(post=>
         <div
@@ -39,8 +50,8 @@ const Homepage = props => {
                 <button className='delete' onClick={deletePost}>Delete</button>
                 <button className='edit' onClick={editPost}>Edit</button>
             </div>
-            <div className='content'>
-                <p className='postContent'>{post.content}</p>
+            <div className='content' dangerouslySetInnerHTML={{__html: htmlDecode(post.content) }}>
+                {/* <p className='postContent'>{unescape(post.content)}</p> */}
             </div>
         </div>)
     }
@@ -59,7 +70,7 @@ const Homepage = props => {
             },
             body:JSON.stringify({
                 title: post.title,
-                content: post.content,
+                content: htmlDecode(post.content),
                 published: !post.published,
                 author: post.author._id
             })
@@ -107,7 +118,7 @@ const Homepage = props => {
             <div className='homepage'>
                 {/* <Link to='/login'>Login</Link> */}
                 {/* Welcome {JSON.parse(localStorage.getItem('currentUser')).username} */}
-                <h1>Your Blog Posts</h1>
+                <h1>Blog Posts by {JSON.parse(localStorage.getItem('currentUser')).username}</h1>
                 {/* <h1>{JSON.parse(localStorage.getItem('currentUser')).username}'s Blog Posts</h1> */}
                 <Link to='/posts'>
                     <div className='createPost'>

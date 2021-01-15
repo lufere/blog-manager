@@ -17,13 +17,20 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [published, setPublished] = useState(false);
+  const [published, setPublished] = useState(true);
   const [userPosts, setUserPosts] = useState();
   const [editAuthor, setEditAuthor] = useState();
 
   function onChange(e){
-    let name = e.target.name;
-    let value = e.target.value;
+    let name, value;
+    if(e.target){
+      name = e.target.name;
+      value = e.target.value;
+    }else{
+      name = 'content';
+      value = e;
+    }
+    // console.log(name);
     if(name==='username') setUsername(value);
     if(name==='password') setPassword(value);
     if(name==='title') setTitle(value);
@@ -46,13 +53,13 @@ function App() {
       // console.log(decodedToken.payload.username);
       // localStorage.setItem('currentUser', decodedToken.payload.username)
       // console.log(dateNow.getTime()/1000);
-      console.log('EXPIRED ',isExpired);
+      // console.log('EXPIRED ',isExpired);
     }
   }
 
   useEffect(()=>{
     // console.log('tokenLS', localStorage.getItem('authToken'));
-    console.log('hi')
+    // console.log('hi')
     checkExpiration();
     // localStorage.clear()
   },[])

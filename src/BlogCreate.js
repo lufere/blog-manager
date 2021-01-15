@@ -1,6 +1,7 @@
 // import React from 'react';
 
 import { useHistory } from "react-router-dom";
+import { Editor } from '@tinymce/tinymce-react'; 
 
 const BlogCreate = props => {
     const history = useHistory();
@@ -30,6 +31,13 @@ const BlogCreate = props => {
                 .catch(err=>console.error(err))
         }
     }
+    const handleEditorChange = (e) => {
+        console.log(
+          'Content was updated:',
+          e.target.getContent()
+        );
+        props.setContent(e.target.getContent());
+    }
 
     return(
         <div className='postForm'>
@@ -45,12 +53,36 @@ const BlogCreate = props => {
                     />
                 </label>
                 <label> Post Content
+                    <Editor
+                        className='editor'
+                        textareaName='myTextArea'
+                        apiKey="iou7093g4pl6zn5mrc6fxwye33asheqmzogqvbiyn985qfef"
+                        initialValue="<p>Initial content</p>"
+                        value={props.content}
+                        onEditorChange={props.onChange}
+                        tagName='textarea'
+                        init={{
+                        height: 300,
+                        menubar: false,
+                        plugins: [
+                            'advlist autolink lists link image',
+                            'charmap print preview anchor help',
+                            'searchreplace visualblocks code',
+                            'insertdatetime media table paste wordcount'
+                        ],
+                        toolbar:
+                            'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help'
+                        }}
+                        // onChange={handleEditorChange}
+                    />
+                </label>
+                {/* <label> Post Content
                     <textarea
                         name = 'content'
                         value = {props.content}
                         onChange = {props.onChange}
                     />
-                </label>
+                </label> */}
                 <label>Publish
                     <input
                         type = 'checkbox'
