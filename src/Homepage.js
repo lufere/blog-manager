@@ -14,7 +14,7 @@ const Homepage = props => {
         fetch(`${process.env.REACT_APP_API}/posts`)
         .then(response=>response.json())
         .then(data=>{
-          console.log(data);
+        //   console.log(data);
           if(localStorage.getItem('currentUser')){
               let currentUser = JSON.parse(localStorage.getItem('currentUser')).username
               let userFilter = data.post_list.filter(post=>post.author&&post.author.username===currentUser);
@@ -104,7 +104,7 @@ const Homepage = props => {
     function editPost(e){
         let parent = e.target.parentElement.parentElement;
         let post = JSON.parse(parent.getAttribute('data-post'));
-        console.log(post);
+        // console.log(post);
         props.setTitle(post.title);
         props.setContent(post.content);
         props.setPublished(post.published);

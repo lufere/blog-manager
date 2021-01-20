@@ -1,9 +1,15 @@
 import { useHistory, useParams } from "react-router-dom";
 import { Editor } from '@tinymce/tinymce-react'; 
+import { useEffect, useState } from "react";
 
 const BlogEdit = props => {
     const {id} = useParams();
     const history = useHistory();
+
+    useEffect(()=>{
+        console.log('INITIAL CONTENT',props.content);
+        props.setContent(htmlDecode(props.content))
+    },[])
 
     function onSubmit(e) {
         e.preventDefault();
@@ -19,8 +25,8 @@ const BlogEdit = props => {
                 },
                 body:JSON.stringify({
                     title: props.title,
+                    // content:changeCounter>1?props.content:initialContent,
                     content: props.content,
-                    // content: props.content,
                     published: props.published,
                     author: props.editAuthor
                 })
@@ -61,9 +67,7 @@ const BlogEdit = props => {
                     <Editor
                         textareaName='myTextArea'
                         apiKey="iou7093g4pl6zn5mrc6fxwye33asheqmzogqvbiyn985qfef"
-                        // value={props.content}
-                        // value={props.content}
-                        initialValue={htmlDecode(props.content)}
+                        initialValue={props.content}
                         onEditorChange={props.onChange}
                         init={{
                         height: 300,

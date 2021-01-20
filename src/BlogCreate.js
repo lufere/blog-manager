@@ -72,7 +72,7 @@ const BlogCreate = props => {
                         toolbar:
                             'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help'
                         }}
-                        // onChange={handleEditorChange}
+                        onChange={handleEditorChange}
                     />
                 </label>
                 {/* <label> Post Content
