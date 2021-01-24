@@ -112,7 +112,7 @@ const Homepage = props => {
         history.push('/posts/' + post.id);
     }
 
-    props.checkExpiration();
+    // props.checkExpiration();
     if(localStorage.getItem('currentUser')){
         return(
             <div className='homepage'>

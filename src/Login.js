@@ -18,6 +18,7 @@ const Login = props => {
             if(data.status===200){
                 localStorage.setItem('authToken', data.token);
                 localStorage.setItem('currentUser', JSON.stringify(data.user));
+                props.checkExpiration();
                 // props.setCurrentUser(data.user.username);
                 history.push('/');
             }
