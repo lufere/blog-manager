@@ -1,5 +1,6 @@
 $background: rgb(250, 248, 218);
 $secondary:rgb(131, 159, 236);
+$unpublished: rgb(245, 193, 184);
 
 html, body{
   background-color: rgb(197, 197, 197);
@@ -63,12 +64,61 @@ a, a:visited{
     overflow: hidden;
     // border: solid red;
     width: 100%;
+    padding-bottom: 20px;
     max-height: 200px;
+
+    background:
+    /* Shadow covers */
+    linear-gradient($background, rgba(255,255,255,0)),
+    linear-gradient(rgba(255,255,255,0), $background) 0 100%,
+    
+    /* Shadows */
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background:
+    /* Shadow covers */
+    linear-gradient($background, rgba(255,255,255,0)),
+    linear-gradient(rgba(255,255,255,0), $background) 0 100%,
+    
+    /* Shadows */
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+    
+    /* Opera doesn't support this in the shorthand */
+    background-attachment: local, local, scroll, scroll;
   }
 
 }
 
-.unpublishedPost{background-color: rgb(245, 193, 184);}
+.unpublishedPost{
+  background-color: $unpublished;
+    .content{
+      padding-bottom: 20px;
+      background:
+      /* Shadow covers */
+      linear-gradient($unpublished, rgba(255,255,255,0)),
+      linear-gradient(rgba(255,255,255,0), $unpublished) 0 100%,
+      
+      /* Shadows */
+      radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+      radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+      background:
+      /* Shadow covers */
+      linear-gradient($unpublished, rgba(255,255,255,0)),
+      linear-gradient(rgba(255,255,255,0), $unpublished) 0 100%,
+      
+      /* Shadows */
+      radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+      radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+      
+      /* Opera doesn't support this in the shorthand */
+      background-attachment: local, local, scroll, scroll;
+    }
+}
 
 .createPost{
   background-color: rgb(233, 229, 177);
