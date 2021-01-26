@@ -80,7 +80,15 @@ const Homepage = props => {
                 console.log(data);
                 window.location.reload();
             })
-            .catch(err=>console.error(err));
+            .catch(err=>{
+                console.error(err);
+                props.setErrors('Session Expired, Log in again');
+                props.setExpired(true);
+                props.logout();
+                localStorage.clear();
+                history.push('/login');
+                // window.location.reload();
+            });
     }
 
     function deletePost(e){

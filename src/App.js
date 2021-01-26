@@ -27,6 +27,7 @@ function App() {
   const [userPosts, setUserPosts] = useState();
   const [editAuthor, setEditAuthor] = useState();
   const [errors, setErrors] = useState();
+  const [expired, setExpired] = useState(false);
 
   function onChange(e){
     let name, value;
@@ -98,9 +99,13 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Homepage
+              errors={errors}
+              setErrors={setErrors}
               // currentUser={currentUser}
               setCurrentUser={setCurrentUser}
               checkExpiration={checkExpiration}
+              setExpired={setExpired}
+              logout={logout}
               userPosts={userPosts}
               setUserPosts={setUserPosts}
               title={title}
@@ -116,6 +121,7 @@ function App() {
             <Login
               errors={errors}
               setErrors={setErrors}
+              expired={expired}
               username={username}
               password={password}
               reset={reset}

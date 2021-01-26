@@ -5,11 +5,13 @@ const Login = props => {
     const history = useHistory();
 
     useEffect(()=>{
-        props.setErrors();
+        if(!props.expired) props.setErrors();
+        // if(props.expired) props.setErrors('Session Expired, Log in again');
         props.reset();
     },[])
 
     function onSubmit(e){
+        console.log(props.errors)
         e.preventDefault();
         fetch(`${process.env.REACT_APP_API}/login`,{
             method: 'POST',
