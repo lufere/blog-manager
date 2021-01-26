@@ -1,6 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 const Login = props => {
     const history = useHistory();
+
+    useEffect(()=>{
+        props.setErrors();
+        props.reset();
+    },[])
 
     function onSubmit(e){
         e.preventDefault();
@@ -19,18 +26,25 @@ const Login = props => {
                 localStorage.setItem('authToken', data.token);
                 localStorage.setItem('currentUser', JSON.stringify(data.user));
                 props.checkExpiration();
+                props.reset();
+                props.setErrors();
                 // props.setCurrentUser(data.user.username);
                 history.push('/');
+            }else if(data.status === 400){
+                props.setErrors(data.info.message);
             }
         })
+        return () =>{
+            console.log('UNMOUNTED')
+            props.reset();
+        }
     }
 
 
 
     return(
-        
         <div className='userFormContainer'>
-
+            {props.errors?<div className='errorBanner'>{props.errors}</div>:null}
             <div className='userForm'>
                 <h3>Log in</h3>
                 <form>

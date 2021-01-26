@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, HashRouter, useHistory } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 import './App.scss';
 import jwt from 'jsonwebtoken';
 
@@ -16,7 +16,7 @@ import { UserProvider } from './UserContext'
 
 
 function App() {
-  const history = useHistory();
+  // const history = useHistory();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +26,7 @@ function App() {
   const [published, setPublished] = useState(true);
   const [userPosts, setUserPosts] = useState();
   const [editAuthor, setEditAuthor] = useState();
+  const [errors, setErrors] = useState();
 
   function onChange(e){
     let name, value;
@@ -47,7 +48,12 @@ function App() {
 
   function logout(){
     setCurrentUser(null);
-    history.push('/login');
+    // history.push('/login');
+  }
+
+  function reset(){
+    setUsername('');
+    setPassword('');
   }
 
   function checkExpiration(){
@@ -108,8 +114,11 @@ function App() {
           </Route>
           <Route exact path='/login'>
             <Login
+              errors={errors}
+              setErrors={setErrors}
               username={username}
               password={password}
+              reset={reset}
               onChange={onChange}
               // currentUser={currentUser}
               checkExpiration={checkExpiration}
@@ -118,6 +127,9 @@ function App() {
           </Route>
           <Route exact path='/signup'>
             <Signup
+              errors={errors}
+              setErrors={setErrors}
+              reset={reset}
               username={username}
               setUsername={setUsername}
               password={password}

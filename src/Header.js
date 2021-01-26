@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import UserContext from './UserContext'
 
 const Header = props => {
+    const history = useHistory();
     const user = useContext(UserContext)
-    console.log('USER', user)
+  
     if(user){
         return(
             <header>
@@ -12,9 +13,9 @@ const Header = props => {
                 <nav>
                     <a href='https://lufere.dev/blog-API'>Blog Viewer</a>
                     <p>Welcome <span>{user.username}</span></p>
-                    {/* <p>{user?user.username:'none'}</p> */}
                     <button
                         onClick={()=>{
+                            history.push('/login');
                             localStorage.clear();
                             // window.location.reload();
                             props.logout();
@@ -22,7 +23,6 @@ const Header = props => {
                     >
                         Logout
                     </button>
-                    {/* <Link to='/signup'>Sign up</Link> */}
                 </nav>
             </header>
         )
@@ -34,7 +34,6 @@ const Header = props => {
                     <a href='https://lufere.dev/blog-API'>Blog Viewer</a>
                     <Link to='/login'>Login</Link>
                     <Link to='/signup'>Sign up</Link>
-                    {/* <p>{user?user:'none'}</p> */}
                 </nav>
             </header>
         )

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useHistory, useParams } from "react-router-dom";
 import { Editor } from '@tinymce/tinymce-react'; 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const BlogEdit = props => {
     const {id} = useParams();

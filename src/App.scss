@@ -239,10 +239,21 @@ header{
   }
 }
 
+.errorBanner{
+  border: 2px solid rgb(184, 25, 25);
+  border-radius: 4px;
+  margin-bottom: 5px;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(201, 87, 87);
+}
+
 .userFormContainer{
   // border: solid red;
   height: calc(100vh - 60px);
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
 }
