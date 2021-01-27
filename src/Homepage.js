@@ -82,10 +82,7 @@ const Homepage = props => {
             })
             .catch(err=>{
                 console.error(err);
-                props.setErrors('Session Expired, Log in again');
-                props.setExpired(true);
-                props.logout();
-                localStorage.clear();
+                props.sessionExpired();
                 history.push('/login');
                 // window.location.reload();
             });
@@ -106,18 +103,27 @@ const Homepage = props => {
                 console.log(data)
                 window.location.reload();
             })
-            .catch(err=>console.error(err));
+            .catch(err=>{
+                console.error(err)
+                props.sessionExpired();
+                history.push('/login');
+            });
     }
 
     function editPost(e){
         let parent = e.target.parentElement.parentElement;
         let post = JSON.parse(parent.getAttribute('data-post'));
         // console.log(post);
-        props.setTitle(post.title);
-        props.setContent(post.content);
-        props.setPublished(post.published);
-        props.setEditAuthor(post.author._id);
-        history.push('/posts/' + post.id);
+        if(props.checkExpiration()){
+            props.sessionExpired();
+            history.push('/login');
+        }else{
+            props.setTitle(post.title);
+            props.setContent(post.content);
+            props.setPublished(post.published);
+            props.setEditAuthor(post.author._id);
+            history.push('/posts/' + post.id);
+        }
     }
 
     // props.checkExpiration();

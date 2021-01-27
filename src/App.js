@@ -57,6 +57,13 @@ function App() {
     setPassword('');
   }
 
+  function sessionExpired(){
+    setErrors('Session Expired, Log in again');
+    setExpired(true);
+    logout();
+    localStorage.clear();
+  }
+
   function checkExpiration(){
     if(localStorage.getItem('authToken')){
       var isExpired = false;
@@ -69,8 +76,10 @@ function App() {
       if(isExpired){
         // setCurrentUser();
         localStorage.clear();
+        return true
       }else{
         setCurrentUser(payload);
+        return false
       }
       // console.log(decodedToken.payload.username);
       // localStorage.setItem('currentUser', decodedToken.payload.username)
@@ -104,6 +113,7 @@ function App() {
               // currentUser={currentUser}
               setCurrentUser={setCurrentUser}
               checkExpiration={checkExpiration}
+              sessionExpired={sessionExpired}
               setExpired={setExpired}
               logout={logout}
               userPosts={userPosts}
